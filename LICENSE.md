@@ -1,6 +1,6 @@
 The GMT.jl package is licensed under the GNU Lesser General Public License:
 
-Copyright (c) 2014: [contributors]()
+Copyright (c) 2014: [contributors](https://github.com/ihnorton/GMT.jl/graphs/contributors)
 
 >                   GNU LESSER GENERAL PUBLIC LICENSE
 >                       Version 3, 29 June 2007
