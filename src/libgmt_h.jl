@@ -1,3 +1,136 @@
+const unix = 1
+const linux = 1
+# Skipping MacroDefinition: NULL((void*)0)
+# Skipping MacroDefinition: offsetof(t,d)__builtin_offsetof(t,d)
+# Skipping MacroDefinition: va_start(ap,param)__builtin_va_start(ap,param)
+# Skipping MacroDefinition: va_end(ap)__builtin_va_end(ap)
+# Skipping MacroDefinition: va_arg(ap,type)__builtin_va_arg(ap,type)
+# Skipping MacroDefinition: va_copy(dest,src)__builtin_va_copy(dest,src)
+const EOF = (-1)
+const BUFSIZ = _IO_BUFSIZ
+const SEEK_SET = 0
+const SEEK_CUR = 1
+const SEEK_END = 2
+const P_tmpdir = "/tmp"
+const L_tmpnam = 20
+const TMP_MAX = 238328
+const FILENAME_MAX = 4096
+const L_ctermid = 9
+const FOPEN_MAX = 16
+const stdin = stdin
+const stdout = stdout
+const stderr = stderr
+# Skipping MacroDefinition: getc(_fp)_IO_getc(_fp)
+# Skipping MacroDefinition: putc(_ch,_fp)_IO_putc(_ch,_fp)
+const WNOHANG = 1
+const WUNTRACED = 2
+const WSTOPPED = 2
+const WEXITED = 4
+const WCONTINUED = 8
+const WNOWAIT = 0x01000000
+const LITTLE_ENDIAN = __LITTLE_ENDIAN
+const BIG_ENDIAN = __BIG_ENDIAN
+const PDP_ENDIAN = __PDP_ENDIAN
+const BYTE_ORDER = __BYTE_ORDER
+# Skipping MacroDefinition: htobe16(x)__bswap_16(x)
+# Skipping MacroDefinition: htole16(x)(x)
+# Skipping MacroDefinition: be16toh(x)__bswap_16(x)
+# Skipping MacroDefinition: le16toh(x)(x)
+# Skipping MacroDefinition: htobe32(x)__bswap_32(x)
+# Skipping MacroDefinition: htole32(x)(x)
+# Skipping MacroDefinition: be32toh(x)__bswap_32(x)
+# Skipping MacroDefinition: le32toh(x)(x)
+# Skipping MacroDefinition: htobe64(x)__bswap_64(x)
+# Skipping MacroDefinition: htole64(x)(x)
+# Skipping MacroDefinition: be64toh(x)__bswap_64(x)
+# Skipping MacroDefinition: le64toh(x)(x)
+const w_termsig = __wait_terminated
+const w_coredump = __wait_terminated
+const w_retcode = __wait_terminated
+const w_stopsig = __wait_stopped
+const w_stopval = __wait_stopped
+# Skipping MacroDefinition: WEXITSTATUS(status)__WEXITSTATUS(__WAIT_INT(status))
+# Skipping MacroDefinition: WTERMSIG(status)__WTERMSIG(__WAIT_INT(status))
+# Skipping MacroDefinition: WSTOPSIG(status)__WSTOPSIG(__WAIT_INT(status))
+# Skipping MacroDefinition: WIFEXITED(status)__WIFEXITED(__WAIT_INT(status))
+# Skipping MacroDefinition: WIFSIGNALED(status)__WIFSIGNALED(__WAIT_INT(status))
+# Skipping MacroDefinition: WIFSTOPPED(status)__WIFSTOPPED(__WAIT_INT(status))
+# Skipping MacroDefinition: WIFCONTINUED(status)__WIFCONTINUED(__WAIT_INT(status))
+const RAND_MAX = 2147483647
+const EXIT_FAILURE = 1
+const EXIT_SUCCESS = 0
+# Skipping MacroDefinition: MB_CUR_MAX(__ctype_get_mb_cur_max())
+const FD_SETSIZE = __FD_SETSIZE
+const NFDBITS = __NFDBITS
+# Skipping MacroDefinition: FD_SET(fd,fdsetp)__FD_SET(fd,fdsetp)
+# Skipping MacroDefinition: FD_CLR(fd,fdsetp)__FD_CLR(fd,fdsetp)
+# Skipping MacroDefinition: FD_ISSET(fd,fdsetp)__FD_ISSET(fd,fdsetp)
+# Skipping MacroDefinition: FD_ZERO(fdsetp)__FD_ZERO(fdsetp)
+# Skipping MacroDefinition: major(dev)gnu_dev_major(dev)
+# Skipping MacroDefinition: minor(dev)gnu_dev_minor(dev)
+# Skipping MacroDefinition: makedev(maj,min)gnu_dev_makedev(maj,min)
+# Skipping MacroDefinition: alloca(size)__builtin_alloca(size)
+const INT8_MIN = (-128)
+const INT16_MIN = (-32767-1)
+const INT32_MIN = (-2147483647-1)
+# Skipping MacroDefinition: INT64_MIN(-__INT64_C(9223372036854775807)-1)
+const INT8_MAX = (127)
+const INT16_MAX = (32767)
+const INT32_MAX = (2147483647)
+# Skipping MacroDefinition: INT64_MAX(__INT64_C(9223372036854775807))
+const UINT8_MAX = (255)
+const UINT16_MAX = (65535)
+const UINT32_MAX = (4294967295)
+# Skipping MacroDefinition: UINT64_MAX(__UINT64_C(18446744073709551615))
+const INT_LEAST8_MIN = (-128)
+const INT_LEAST16_MIN = (-32767-1)
+const INT_LEAST32_MIN = (-2147483647-1)
+# Skipping MacroDefinition: INT_LEAST64_MIN(-__INT64_C(9223372036854775807)-1)
+const INT_LEAST8_MAX = (127)
+const INT_LEAST16_MAX = (32767)
+const INT_LEAST32_MAX = (2147483647)
+# Skipping MacroDefinition: INT_LEAST64_MAX(__INT64_C(9223372036854775807))
+const UINT_LEAST8_MAX = (255)
+const UINT_LEAST16_MAX = (65535)
+const UINT_LEAST32_MAX = (4294967295)
+# Skipping MacroDefinition: UINT_LEAST64_MAX(__UINT64_C(18446744073709551615))
+const INT_FAST8_MIN = (-128)
+const INT_FAST16_MIN = (-9223372036854775807-1)
+const INT_FAST32_MIN = (-9223372036854775807-1)
+# Skipping MacroDefinition: INT_FAST64_MIN(-__INT64_C(9223372036854775807)-1)
+const INT_FAST8_MAX = (127)
+const INT_FAST16_MAX = (9223372036854775807)
+const INT_FAST32_MAX = (9223372036854775807)
+# Skipping MacroDefinition: INT_FAST64_MAX(__INT64_C(9223372036854775807))
+const UINT_FAST8_MAX = (255)
+const UINT_FAST16_MAX = (18446744073709551615)
+const UINT_FAST32_MAX = (18446744073709551615)
+# Skipping MacroDefinition: UINT_FAST64_MAX(__UINT64_C(18446744073709551615))
+const INTPTR_MIN = (-9223372036854775807-1)
+const INTPTR_MAX = (9223372036854775807)
+const UINTPTR_MAX = (18446744073709551615)
+# Skipping MacroDefinition: INTMAX_MIN(-__INT64_C(9223372036854775807)-1)
+# Skipping MacroDefinition: INTMAX_MAX(__INT64_C(9223372036854775807))
+# Skipping MacroDefinition: UINTMAX_MAX(__UINT64_C(18446744073709551615))
+const PTRDIFF_MIN = (-9223372036854775807-1)
+const PTRDIFF_MAX = (9223372036854775807)
+const SIG_ATOMIC_MIN = (-2147483647-1)
+const SIG_ATOMIC_MAX = (2147483647)
+const SIZE_MAX = (18446744073709551615)
+const WCHAR_MIN = __WCHAR_MIN
+const WCHAR_MAX = __WCHAR_MAX
+const WINT_MIN = (0)
+const WINT_MAX = (4294967295)
+# Skipping MacroDefinition: INT8_C(c)c
+# Skipping MacroDefinition: INT16_C(c)c
+# Skipping MacroDefinition: INT32_C(c)c
+# Skipping MacroDefinition: INT64_C(c)c##L
+# Skipping MacroDefinition: UINT8_C(c)c
+# Skipping MacroDefinition: UINT16_C(c)c
+# Skipping MacroDefinition: UINT32_C(c)c##U
+# Skipping MacroDefinition: UINT64_C(c)c##UL
+# Skipping MacroDefinition: INTMAX_C(c)c##L
+# Skipping MacroDefinition: UINTMAX_C(c)c##UL
 const EXTERN_MSC = 
 const GMT_B_OPT = "-B<args>"
 const GMT_I_OPT = "-I<xinc>[<unit>][=|+][/<yinc>[<unit>][=|+]]"
@@ -25,6 +158,228 @@ const GMT_colon_OPT = "-:[i|o]"
 const GMT_FFT_OPT = "[f|q|s|<nx>/<ny>][+a|d|l][+e|m|n][+t<width>][+w<suffix>][+z[p]]"
 # Skipping MacroDefinition: GMT_tic(C){if(C->current.setting.verbose>=GMT_MSG_TICTOC)GMT_Message(C->parent,GMT_TIME_RESET,"");}
 # Skipping MacroDefinition: GMT_toc(C,...){if(C->current.setting.verbose>=GMT_MSG_TICTOC)GMT_Message(C->parent,GMT_TIME_ELAPSED,"(%s) | %s\n",C->init.module_name,__VA_ARGS__);}
+typealias ptrdiff_t Clong
+typealias size_t Culong
+typealias wchar_t Cint
+typealias FILE _IO_FILE
+immutable _G_fpos_t
+    __pos::__off_t
+    __state::__mbstate_t
+end
+immutable _G_fpos64_t
+    __pos::__off64_t
+    __state::__mbstate_t
+end
+typealias va_list __builtin_va_list
+typealias _IO_lock_t None
+immutable _IO_marker
+    _next::Ptr{_IO_marker}
+    _sbuf::Ptr{_IO_FILE}
+    _pos::Cint
+end
+immutable Array_1_Uint8
+    d1::Uint8
+end
+immutable Array_20_Uint8
+    d1::Uint8
+    d2::Uint8
+    d3::Uint8
+    d4::Uint8
+    d5::Uint8
+    d6::Uint8
+    d7::Uint8
+    d8::Uint8
+    d9::Uint8
+    d10::Uint8
+    d11::Uint8
+    d12::Uint8
+    d13::Uint8
+    d14::Uint8
+    d15::Uint8
+    d16::Uint8
+    d17::Uint8
+    d18::Uint8
+    d19::Uint8
+    d20::Uint8
+end
+immutable _IO_FILE
+    _flags::Cint
+    _IO_read_ptr::Ptr{Uint8}
+    _IO_read_end::Ptr{Uint8}
+    _IO_read_base::Ptr{Uint8}
+    _IO_write_base::Ptr{Uint8}
+    _IO_write_ptr::Ptr{Uint8}
+    _IO_write_end::Ptr{Uint8}
+    _IO_buf_base::Ptr{Uint8}
+    _IO_buf_end::Ptr{Uint8}
+    _IO_save_base::Ptr{Uint8}
+    _IO_backup_base::Ptr{Uint8}
+    _IO_save_end::Ptr{Uint8}
+    _markers::Ptr{_IO_marker}
+    _chain::Ptr{_IO_FILE}
+    _fileno::Cint
+    _flags2::Cint
+    _old_offset::__off_t
+    _cur_column::Uint16
+    _vtable_offset::Uint8
+    _shortbuf::Array_1_Uint8
+    _lock::Ptr{_IO_lock_t}
+    _offset::__off64_t
+    __pad1::Ptr{None}
+    __pad2::Ptr{None}
+    __pad3::Ptr{None}
+    __pad4::Ptr{None}
+    __pad5::size_t
+    _mode::Cint
+    _unused2::Array_20_Uint8
+end
+typealias _IO_FILE _IO_FILE
+typealias va_list __gnuc_va_list
+typealias off_t __off_t
+typealias ssize_t __ssize_t
+typealias fpos_t _G_fpos_t
+immutable div_t
+    quot::Cint
+    rem::Cint
+end
+immutable ldiv_t
+    quot::Clong
+    rem::Clong
+end
+immutable lldiv_t
+    quot::Clonglong
+    rem::Clonglong
+end
+typealias u_char __u_char
+typealias u_short __u_short
+typealias u_int __u_int
+typealias u_long __u_long
+typealias quad_t __quad_t
+typealias u_quad_t __u_quad_t
+typealias fsid_t __fsid_t
+typealias loff_t __loff_t
+typealias ino_t __ino_t
+typealias dev_t __dev_t
+typealias gid_t __gid_t
+typealias mode_t __mode_t
+typealias nlink_t __nlink_t
+typealias uid_t __uid_t
+typealias pid_t __pid_t
+typealias id_t __id_t
+typealias daddr_t __daddr_t
+typealias caddr_t __caddr_t
+typealias key_t __key_t
+typealias clock_t __clock_t
+typealias time_t __time_t
+typealias clockid_t __clockid_t
+typealias timer_t __timer_t
+typealias ulong Culong
+typealias ushort Uint16
+typealias uint Uint32
+typealias int8_t Uint8
+typealias int16_t Int16
+typealias int32_t Cint
+typealias int64_t Clong
+typealias u_int8_t Cuchar
+typealias u_int16_t Uint16
+typealias u_int32_t Uint32
+typealias u_int64_t Culong
+typealias register_t Clong
+typealias sigset_t __sigset_t
+immutable timespec
+    tv_sec::__time_t
+    tv_nsec::__syscall_slong_t
+end
+immutable timeval
+    tv_sec::__time_t
+    tv_usec::__suseconds_t
+end
+typealias suseconds_t __suseconds_t
+immutable Array_16___fd_mask
+    d1::__fd_mask
+    d2::__fd_mask
+    d3::__fd_mask
+    d4::__fd_mask
+    d5::__fd_mask
+    d6::__fd_mask
+    d7::__fd_mask
+    d8::__fd_mask
+    d9::__fd_mask
+    d10::__fd_mask
+    d11::__fd_mask
+    d12::__fd_mask
+    d13::__fd_mask
+    d14::__fd_mask
+    d15::__fd_mask
+    d16::__fd_mask
+end
+immutable fd_set
+    __fds_bits::Array_16___fd_mask
+end
+typealias fd_mask __fd_mask
+typealias blksize_t __blksize_t
+typealias blkcnt_t __blkcnt_t
+typealias fsblkcnt_t __fsblkcnt_t
+typealias fsfilcnt_t __fsfilcnt_t
+typealias pthread_t Culong
+typealias pthread_attr_t pthread_attr_t
+typealias pthread_key_t Uint32
+typealias pthread_once_t Cint
+typealias pthread_spinlock_t Cint
+immutable random_data
+    fptr::Ptr{int32_t}
+    rptr::Ptr{int32_t}
+    state::Ptr{int32_t}
+    rand_type::Cint
+    rand_deg::Cint
+    rand_sep::Cint
+    end_ptr::Ptr{int32_t}
+end
+immutable Array_3_Uint16
+    d1::Uint16
+    d2::Uint16
+    d3::Uint16
+end
+immutable Array_7_Uint16
+    d1::Uint16
+    d2::Uint16
+    d3::Uint16
+    d4::Uint16
+    d5::Uint16
+    d6::Uint16
+    d7::Uint16
+end
+immutable drand48_data
+    __x::Array_3_Uint16
+    __old_x::Array_3_Uint16
+    __c::Uint16
+    __init::Uint16
+    __a::Culonglong
+end
+typealias uint8_t Cuchar
+typealias uint16_t Uint16
+typealias uint32_t Uint32
+typealias uint64_t Culong
+typealias int_least8_t Uint8
+typealias int_least16_t Int16
+typealias int_least32_t Cint
+typealias int_least64_t Clong
+typealias uint_least8_t Cuchar
+typealias uint_least16_t Uint16
+typealias uint_least32_t Uint32
+typealias uint_least64_t Culong
+typealias int_fast8_t Uint8
+typealias int_fast16_t Clong
+typealias int_fast32_t Clong
+typealias int_fast64_t Clong
+typealias uint_fast8_t Cuchar
+typealias uint_fast16_t Culong
+typealias uint_fast32_t Culong
+typealias uint_fast64_t Culong
+typealias intptr_t Clong
+typealias uintptr_t Culong
+typealias intmax_t Clong
+typealias uintmax_t Culong
 # begin enum GMT_enum_api
 typealias GMT_enum_api Uint32
 const GMT_USAGE = 0
@@ -1106,10 +1461,10 @@ immutable Array_2_Cint
     d1::Cint
     d2::Cint
 end
-immutable Array_3_Cint
-    d1::Cint
-    d2::Cint
-    d3::Cint
+immutable Array_3_size_t
+    d1::size_t
+    d2::size_t
+    d3::size_t
 end
 immutable Array_4_Uint8
     d1::Uint8
@@ -1117,14 +1472,18 @@ immutable Array_4_Uint8
     d3::Uint8
     d4::Uint8
 end
+immutable Array_2_size_t
+    d1::size_t
+    d2::size_t
+end
 immutable Array_2_Uint32
     d1::Uint32
     d2::Uint32
 end
 immutable GMT_GRID_HEADER
-    nx::Uint32
-    ny::Uint32
-    registration::Uint32
+    nx::uint32_t
+    ny::uint32_t
+    registration::uint32_t
     wesn::Array_4_Cdouble
     z_min::Cdouble
     z_max::Cdouble
@@ -1142,9 +1501,9 @@ immutable GMT_GRID_HEADER
     complex_mode::Uint32
     mx::Uint32
     my::Uint32
-    nm::Cint
-    size::Cint
-    n_alloc::Cint
+    nm::size_t
+    size::size_t
+    n_alloc::size_t
     trendmode::Uint32
     arrangement::Uint32
     n_bands::Uint32
@@ -1159,8 +1518,8 @@ immutable GMT_GRID_HEADER
     z_id::Cint
     ncid::Cint
     xy_dim::Array_2_Cint
-    t_index::Array_3_Cint
-    data_offset::Cint
+    t_index::Array_3_size_t
+    data_offset::size_t
     stride::Uint32
     nan_value::Cfloat
     xy_off::Cdouble
@@ -1176,7 +1535,7 @@ immutable GMT_GRID_HEADER
     gn::Uint32
     gs::Uint32
     is_netcdf4::Uint32
-    z_chunksize::Array_2_Cint
+    z_chunksize::Array_2_size_t
     z_shuffle::Uint32
     z_deflate_level::Uint32
     z_scale_autoadust::Uint32
@@ -1250,8 +1609,8 @@ immutable Array_2_Ptr
     d2::Ptr{Uint8}
 end
 immutable GMT_DATASEGMENT
-    n_rows::Uint64
-    n_columns::Uint64
+    n_rows::uint64_t
+    n_columns::uint64_t
     min::Ptr{Cdouble}
     max::Ptr{Cdouble}
     coord::Ptr{Ptr{Cdouble}}
@@ -1259,8 +1618,8 @@ immutable GMT_DATASEGMENT
     header::Ptr{Uint8}
     mode::GMT_enum_out
     pol_mode::GMT_enum_pol
-    id::Uint64
-    n_alloc::Cint
+    id::uint64_t
+    n_alloc::size_t
     range::Cint
     pole::Cint
     dist::Cdouble
@@ -1271,36 +1630,36 @@ immutable GMT_DATASEGMENT
 end
 immutable GMT_DATATABLE
     n_headers::Uint32
-    n_columns::Uint64
-    n_segments::Uint64
-    n_records::Uint64
+    n_columns::uint64_t
+    n_segments::uint64_t
+    n_records::uint64_t
     min::Ptr{Cdouble}
     max::Ptr{Cdouble}
     header::Ptr{Ptr{Uint8}}
     segment::Ptr{Ptr{GMT_DATASEGMENT}}
-    id::Uint64
-    n_alloc::Cint
+    id::uint64_t
+    n_alloc::size_t
     mode::GMT_enum_out
     ogr::Ptr{GMT_OGR}
     file::Array_2_Ptr
 end
-immutable Array_4_Uint64
-    d1::Uint64
-    d2::Uint64
-    d3::Uint64
-    d4::Uint64
+immutable Array_4_uint64_t
+    d1::uint64_t
+    d2::uint64_t
+    d3::uint64_t
+    d4::uint64_t
 end
 immutable GMT_DATASET
-    n_tables::Uint64
-    n_columns::Uint64
-    n_segments::Uint64
-    n_records::Uint64
+    n_tables::uint64_t
+    n_columns::uint64_t
+    n_segments::uint64_t
+    n_records::uint64_t
     min::Ptr{Cdouble}
     max::Ptr{Cdouble}
     table::Ptr{Ptr{GMT_DATATABLE}}
-    id::Uint64
-    n_alloc::Cint
-    dim::Array_4_Uint64
+    id::uint64_t
+    n_alloc::size_t
+    dim::Array_4_uint64_t
     geometry::Uint32
     alloc_level::Uint32
     io_mode::GMT_enum_dest
@@ -1308,34 +1667,34 @@ immutable GMT_DATASET
     file::Array_2_Ptr
 end
 immutable GMT_TEXTSEGMENT
-    n_rows::Uint64
+    n_rows::uint64_t
     record::Ptr{Ptr{Uint8}}
     label::Ptr{Uint8}
     header::Ptr{Uint8}
-    id::Uint64
+    id::uint64_t
     mode::GMT_enum_out
-    n_alloc::Cint
+    n_alloc::size_t
     file::Array_2_Ptr
     tvalue::Ptr{Ptr{Uint8}}
 end
 immutable GMT_TEXTTABLE
     n_headers::Uint32
-    n_segments::Uint64
-    n_records::Uint64
+    n_segments::uint64_t
+    n_records::uint64_t
     header::Ptr{Ptr{Uint8}}
     segment::Ptr{Ptr{GMT_TEXTSEGMENT}}
-    id::Uint64
-    n_alloc::Cint
+    id::uint64_t
+    n_alloc::size_t
     mode::GMT_enum_out
     file::Array_2_Ptr
 end
 immutable GMT_TEXTSET
-    n_tables::Uint64
-    n_segments::Uint64
-    n_records::Uint64
+    n_tables::uint64_t
+    n_segments::uint64_t
+    n_records::uint64_t
     table::Ptr{Ptr{GMT_TEXTTABLE}}
-    id::Uint64
-    n_alloc::Cint
+    id::uint64_t
+    n_alloc::size_t
     geometry::Uint32
     alloc_level::Uint32
     io_mode::GMT_enum_dest
@@ -1399,7 +1758,7 @@ immutable GMT_PALETTE
     range::Ptr{GMT_LUT}
     patch::Array_3_GMT_BFN_COLOR
     header::Ptr{Ptr{Uint8}}
-    id::Uint64
+    id::uint64_t
     alloc_mode::GMT_enum_alloc
     alloc_level::Uint32
     model::Uint32
@@ -1419,21 +1778,21 @@ immutable GMT_IMAGE
     ColorMap::Ptr{Cint}
     header::Ptr{GMT_GRID_HEADER}
     data::Ptr{Cuchar}
-    id::Uint64
+    id::uint64_t
     alloc_level::Uint32
     alloc_mode::GMT_enum_alloc
     ColorInterp::Ptr{Uint8}
 end
 immutable GMT_VECTOR
-    n_columns::Uint64
-    n_rows::Uint64
+    n_columns::uint64_t
+    n_rows::uint64_t
     registration::GMT_enum_reg
     _type::Ptr{GMT_enum_type}
     data::Ptr{GMT_UNIVECTOR}
     range::Array_2_Cdouble
     command::Array_320_Uint8
     remark::Array_160_Uint8
-    id::Uint64
+    id::uint64_t
     alloc_level::Uint32
     alloc_mode::GMT_enum_alloc
 end
@@ -1451,19 +1810,19 @@ immutable Array_6_Cdouble
     d6::Cdouble
 end
 immutable GMT_MATRIX
-    n_rows::Uint64
-    n_columns::Uint64
-    n_layers::Uint64
+    n_rows::uint64_t
+    n_columns::uint64_t
+    n_layers::uint64_t
     shape::GMT_enum_fmt
     registration::GMT_enum_reg
-    dim::Cint
-    size::Cint
+    dim::size_t
+    size::size_t
     _type::GMT_enum_type
     range::Array_6_Cdouble
     data::GMT_UNIVECTOR
     command::Array_320_Uint8
     remark::Array_160_Uint8
-    id::Uint64
+    id::uint64_t
     alloc_level::Uint32
     alloc_mode::GMT_enum_alloc
 end
