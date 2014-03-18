@@ -1102,14 +1102,25 @@ immutable Array_256_Uint8
     d255::Uint8
     d256::Uint8
 end
+
+immutable Array_2_Csize_t
+	d1::Csize_t
+	d2::Csize_t
+end
+immutable Array_3_Csize_t
+	d1::Csize_t
+	d2::Csize_t
+	d3::Csize_t
+end
+
 immutable Array_2_Cint
     d1::Cint
     d2::Cint
 end
-immutable Array_3_size_t
-    d1::size_t
-    d2::size_t
-    d3::size_t
+immutable Array_3_Cint
+    d1::Cint
+    d2::Cint
+    d3::Cint
 end
 immutable Array_4_Uint8
     d1::Uint8
@@ -1117,18 +1128,14 @@ immutable Array_4_Uint8
     d3::Uint8
     d4::Uint8
 end
-immutable Array_2_size_t
-    d1::size_t
-    d2::size_t
-end
 immutable Array_2_Uint32
     d1::Uint32
     d2::Uint32
 end
 immutable GMT_GRID_HEADER
-    nx::uint32_t
-    ny::uint32_t
-    registration::uint32_t
+    nx::Uint32
+    ny::Uint32
+    registration::Uint32
     wesn::Array_4_Cdouble
     z_min::Cdouble
     z_max::Cdouble
@@ -1146,9 +1153,9 @@ immutable GMT_GRID_HEADER
     complex_mode::Uint32
     mx::Uint32
     my::Uint32
-    nm::size_t
-    size::size_t
-    n_alloc::size_t
+    nm::Csize_t
+    size::Csize_t
+    n_alloc::Csize_t
     trendmode::Uint32
     arrangement::Uint32
     n_bands::Uint32
@@ -1163,8 +1170,8 @@ immutable GMT_GRID_HEADER
     z_id::Cint
     ncid::Cint
     xy_dim::Array_2_Cint
-    t_index::Array_3_size_t
-    data_offset::size_t
+    t_index::Array_3_Csize_t
+    data_offset::Csize_t
     stride::Uint32
     nan_value::Cfloat
     xy_off::Cdouble
@@ -1180,7 +1187,7 @@ immutable GMT_GRID_HEADER
     gn::Uint32
     gs::Uint32
     is_netcdf4::Uint32
-    z_chunksize::Array_2_size_t
+    z_chunksize::Array_2_Csize_t
     z_shuffle::Uint32
     z_deflate_level::Uint32
     z_scale_autoadust::Uint32
@@ -1254,8 +1261,8 @@ immutable Array_2_Ptr
     d2::Ptr{Uint8}
 end
 immutable GMT_DATASEGMENT
-    n_rows::uint64_t
-    n_columns::uint64_t
+    n_rows::Uint64
+    n_columns::Uint64
     min::Ptr{Cdouble}
     max::Ptr{Cdouble}
     coord::Ptr{Ptr{Cdouble}}
@@ -1263,8 +1270,8 @@ immutable GMT_DATASEGMENT
     header::Ptr{Uint8}
     mode::GMT_enum_out
     pol_mode::GMT_enum_pol
-    id::uint64_t
-    n_alloc::size_t
+    id::Uint64
+    n_alloc::Cint
     range::Cint
     pole::Cint
     dist::Cdouble
@@ -1275,36 +1282,36 @@ immutable GMT_DATASEGMENT
 end
 immutable GMT_DATATABLE
     n_headers::Uint32
-    n_columns::uint64_t
-    n_segments::uint64_t
-    n_records::uint64_t
+    n_columns::Uint64
+    n_segments::Uint64
+    n_records::Uint64
     min::Ptr{Cdouble}
     max::Ptr{Cdouble}
     header::Ptr{Ptr{Uint8}}
     segment::Ptr{Ptr{GMT_DATASEGMENT}}
-    id::uint64_t
-    n_alloc::size_t
+    id::Uint64
+    n_alloc::Cint
     mode::GMT_enum_out
     ogr::Ptr{GMT_OGR}
     file::Array_2_Ptr
 end
-immutable Array_4_uint64_t
-    d1::uint64_t
-    d2::uint64_t
-    d3::uint64_t
-    d4::uint64_t
+immutable Array_4_Uint64
+    d1::Uint64
+    d2::Uint64
+    d3::Uint64
+    d4::Uint64
 end
 immutable GMT_DATASET
-    n_tables::uint64_t
-    n_columns::uint64_t
-    n_segments::uint64_t
-    n_records::uint64_t
+    n_tables::Uint64
+    n_columns::Uint64
+    n_segments::Uint64
+    n_records::Uint64
     min::Ptr{Cdouble}
     max::Ptr{Cdouble}
     table::Ptr{Ptr{GMT_DATATABLE}}
-    id::uint64_t
-    n_alloc::size_t
-    dim::Array_4_uint64_t
+    id::Uint64
+    n_alloc::Cint
+    dim::Array_4_Uint64
     geometry::Uint32
     alloc_level::Uint32
     io_mode::GMT_enum_dest
@@ -1312,34 +1319,34 @@ immutable GMT_DATASET
     file::Array_2_Ptr
 end
 immutable GMT_TEXTSEGMENT
-    n_rows::uint64_t
+    n_rows::Uint64
     record::Ptr{Ptr{Uint8}}
     label::Ptr{Uint8}
     header::Ptr{Uint8}
-    id::uint64_t
+    id::Uint64
     mode::GMT_enum_out
-    n_alloc::size_t
+    n_alloc::Cint
     file::Array_2_Ptr
     tvalue::Ptr{Ptr{Uint8}}
 end
 immutable GMT_TEXTTABLE
     n_headers::Uint32
-    n_segments::uint64_t
-    n_records::uint64_t
+    n_segments::Uint64
+    n_records::Uint64
     header::Ptr{Ptr{Uint8}}
     segment::Ptr{Ptr{GMT_TEXTSEGMENT}}
-    id::uint64_t
-    n_alloc::size_t
+    id::Uint64
+    n_alloc::Cint
     mode::GMT_enum_out
     file::Array_2_Ptr
 end
 immutable GMT_TEXTSET
-    n_tables::uint64_t
-    n_segments::uint64_t
-    n_records::uint64_t
+    n_tables::Uint64
+    n_segments::Uint64
+    n_records::Uint64
     table::Ptr{Ptr{GMT_TEXTTABLE}}
-    id::uint64_t
-    n_alloc::size_t
+    id::Uint64
+    n_alloc::Cint
     geometry::Uint32
     alloc_level::Uint32
     io_mode::GMT_enum_dest
@@ -1370,6 +1377,15 @@ typealias GMT_enum_cptflags Uint32
 const GMT_CPT_NO_BNF = 1
 const GMT_CPT_EXTEND_BNF = 2
 # end enum GMT_enum_cptflags
+immutable GMT_FILL
+	rgb::Array_4_Cdouble
+	f_rgb::Array_4_Cdouble
+	b_rgb::Array_4_Cdouble
+	use_pattern::Bool
+	pattern_no::Int32
+	dpi::Uint32
+	pattern::Array_256_Uint8		# was char pattern[GMT_BUFSIZ];
+end
 immutable GMT_LUT
     z_low::Cdouble
     z_high::Cdouble
@@ -1403,7 +1419,7 @@ immutable GMT_PALETTE
     range::Ptr{GMT_LUT}
     patch::Array_3_GMT_BFN_COLOR
     header::Ptr{Ptr{Uint8}}
-    id::uint64_t
+    id::Uint64
     alloc_mode::GMT_enum_alloc
     alloc_level::Uint32
     model::Uint32
@@ -1423,21 +1439,33 @@ immutable GMT_IMAGE
     ColorMap::Ptr{Cint}
     header::Ptr{GMT_GRID_HEADER}
     data::Ptr{Cuchar}
-    id::uint64_t
+    id::Uint64
     alloc_level::Uint32
     alloc_mode::GMT_enum_alloc
     ColorInterp::Ptr{Uint8}
 end
+immutable GMT_UNIVECTOR
+	uc1::Ptr{Uint8}
+	sc1::Ptr{Int8}
+	ui2::Ptr{Uint16}
+	si2::Ptr{Int16}
+	ui4::Ptr{Uint32}
+	si4::Ptr{Int32}
+	ui8::Ptr{Uint64}
+	si8::Ptr{Int64}
+	f4::Ptr{Float32}
+	f8::Ptr{Float64}
+end
 immutable GMT_VECTOR
-    n_columns::uint64_t
-    n_rows::uint64_t
+    n_columns::Uint64
+    n_rows::Uint64
     registration::GMT_enum_reg
     _type::Ptr{GMT_enum_type}
     data::Ptr{GMT_UNIVECTOR}
     range::Array_2_Cdouble
     command::Array_320_Uint8
     remark::Array_160_Uint8
-    id::uint64_t
+    id::Uint64
     alloc_level::Uint32
     alloc_mode::GMT_enum_alloc
 end
@@ -1455,19 +1483,19 @@ immutable Array_6_Cdouble
     d6::Cdouble
 end
 immutable GMT_MATRIX
-    n_rows::uint64_t
-    n_columns::uint64_t
-    n_layers::uint64_t
+    n_rows::Uint64
+    n_columns::Uint64
+    n_layers::Uint64
     shape::GMT_enum_fmt
     registration::GMT_enum_reg
-    dim::size_t
-    size::size_t
+    dim::Csize_t
+    size::Csize_t
     _type::GMT_enum_type
     range::Array_6_Cdouble
     data::GMT_UNIVECTOR
     command::Array_320_Uint8
     remark::Array_160_Uint8
-    id::uint64_t
+    id::Uint64
     alloc_level::Uint32
     alloc_mode::GMT_enum_alloc
 end
