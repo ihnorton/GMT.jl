@@ -262,6 +262,81 @@ const GMT_GRID_REMARK_LEN160 = 160
 const GMT_GRID_NAME_LEN256 = 256
 const GMT_GRID_HEADER_SIZE = 892
 # end enum GMT_enum_grdlen
+
+typealias Gmt_api_error_code Uint32
+const GMT_OK = 0
+const GMT_WRONG_MATRIX_SHAPE = 1
+const GMT_ACCESS_NOT_ENABLED = 2
+const GMT_ARGV_LIST_NULL = 3
+const GMT_ARG_IS_NULL = 4
+const GMT_COUNTER_IS_NEGATIVE = 5
+const GMT_BAD_GEOMETRY = 6
+const GMT_BAD_PERMISSION = 7
+const GMT_CPT_READ_ERROR = 8
+const GMT_DATA_READ_ERROR = 9
+const GMT_DATA_WRITE_ERROR = 10
+const GMT_DIM_TOO_LARGE = 11
+const GMT_DIM_TOO_SMALL = 12
+const GMT_ERROR_ON_FCLOSE = 13
+const GMT_ERROR_ON_FDOPEN = 14
+const GMT_ERROR_ON_FOPEN = 15
+const GMT_FILE_NOT_FOUND = 16
+const GMT_GRID_BC_ERROR = 17
+const GMT_GRID_READ_ERROR = 18
+const GMT_GRID_WRITE_ERROR = 19
+const GMT_ID_TOO_LARGE = 20
+const GMT_IMAGE_BC_ERROR = 21
+const GMT_IMAGE_READ_ERROR = 22
+const GMT_MEMORY_ERROR = 23
+const GMT_FREE_EXTERNAL_NOT_ALLOWED = 24
+const GMT_FREE_WRONG_LEVEL = 25
+const GMT_NOT_A_SESSION = 26
+const GMT_NOT_A_VALID_ARG = 27
+const GMT_NOT_A_VALID_DIRECTION = 28
+const GMT_NOT_A_VALID_FAMILY = 29
+const GMT_NOT_A_VALID_ID = 30
+const GMT_NOT_A_VALID_IO_ACCESS = 31
+const GMT_NOT_A_VALID_IO_MODE = 32
+const GMT_NOT_A_VALID_IO_SESSION = 33
+const GMT_NOT_A_VALID_METHOD = 34
+const GMT_NOT_A_VALID_MODE = 35
+const GMT_NOT_A_VALID_MODULE = 36
+const GMT_NOT_A_VALID_TYPE = 37
+const GMT_NOT_INPUT_OBJECT = 38
+const GMT_NOT_OUTPUT_OBJECT = 39
+const GMT_NO_GRDHEADER = 40
+const GMT_NO_INPUT = 41
+const GMT_NO_OUTPUT = 42
+const GMT_NO_PARAMETERS = 43
+const GMT_NO_RESOURCES = 44
+const GMT_N_COLS_NOT_SET = 45
+const GMT_N_COLS_VARY = 46
+const GMT_N_ROWS_NOT_SET = 47
+const GMT_OBJECT_NOT_FOUND = 48
+const GMT_OGR_ONE_TABLE_ONLY = 49
+const GMT_ONLY_ONE_ALLOWED = 50
+const GMT_OPTION_EXIST = 51
+const GMT_OPTION_HISTORY_ERROR = 52
+const GMT_OPTION_IS_NULL = 53
+const GMT_OPTION_LIST_NULL = 54
+const GMT_OPTION_NOT_FOUND = 55
+const GMT_OPTION_SORT_ERROR = 56
+const GMT_OUTPUT_NOT_SET = 57
+const GMT_PADDING_NOT_ALLOWED = 58
+const GMT_PARSE_ERROR = 59
+const GMT_PROG_NOT_FOUND = 60
+const GMT_PTR_IS_NULL = 61
+const GMT_PTR_NOT_NULL = 62
+const GMT_PTR_NOT_UNIQUE = 63
+const GMT_READ_ONCE = 64
+const GMT_RUNTIME_ERROR = 65
+const GMT_SIZE_IS_ZERO = 66
+const GMT_STREAM_NOT_ALLOWED = 67
+const GMT_SUBSET_NOT_ALLOWED = 68
+const GMT_VALUE_NOT_SET = 69
+const GMT_WRITTEN_ONCE = 70
+# end enum Gmt_api_error_code
+
 immutable Array_4_Cdouble
     d1::Cdouble
     d2::Cdouble
@@ -1132,7 +1207,7 @@ immutable Array_2_Uint32
     d1::Uint32
     d2::Uint32
 end
-immutable GMT_GRID_HEADER
+type GMT_GRID_HEADER
     nx::Uint32
     ny::Uint32
     registration::Uint32
@@ -1197,7 +1272,7 @@ immutable GMT_GRID_HEADER
     xy_unit::Array_2_Uint32
     xy_unit_to_meter::Array_2_Cdouble
 end
-immutable GMT_GRID
+type GMT_GRID
     header::Ptr{GMT_GRID_HEADER}
     data::Ptr{Cfloat}
     id::Uint32
