@@ -37,8 +37,8 @@ function GMT_Create_Data(API::Ptr{None}, family, geometry, mode, dim=C_NULL,
 	convert(ret_type, ptr)
 end
 
-function GMT_Get_Data(API::Ptr{None}, object_ID::Cint, mode::Uint32, data::Ptr{None})
-  ccall( (:GMT_Get_Data, thelib), Ptr{None}, (Ptr{None}, Cint, Uint32, Ptr{None}), API, object_ID, mode, data)
+function GMT_Get_Data(API, object_ID::Integer, mode::Integer=0, data=C_NULL)
+	ccall((:GMT_Get_Data, thelib), Ptr{None}, (Ptr{None}, Cint, Uint32, Ptr{None}), API, object_ID, mode, data)
 end
 
 function GMT_Read_Data(API::Ptr{None}, family, method, geometry, mode, wesn, input=C_NULL, data=C_NULL)
@@ -76,12 +76,14 @@ end
 function GMT_Get_Record(API::Ptr{None}, mode::Uint32, retval::Ptr{Cint})
   ccall( (:GMT_Get_Record, thelib), Ptr{None}, (Ptr{None}, Uint32, Ptr{Cint}), API, mode, retval)
 end
+
 function GMT_Destroy_Session(API::Ptr{None})
-  ccall( (:GMT_Destroy_Session, thelib), Cint, (Ptr{None},), API)
+	ccall( (:GMT_Destroy_Session, thelib), Cint, (Ptr{None},), API)
 end
 
-function GMT_Register_IO(API::Ptr{None}, family, method, geometry, direction=0, wesn=C_NULL, resource=C_NULL)
-	ccall( (:GMT_Register_IO, thelib), Cint, (Ptr{None}, Uint32, Uint32, Uint32, Uint32, Ptr{Cdouble},
+function GMT_Register_IO(API, family::Integer, method::Integer, geometry::Integer, direction::Integer=0,
+		wesn=C_NULL, resource=C_NULL)
+	err = ccall((:GMT_Register_IO, thelib), Cint, (Ptr{None}, Uint32, Uint32, Uint32, Uint32, Ptr{Cdouble},
 		Ptr{None}), API, family, method, geometry, direction, wesn, resource)
 end
 
@@ -102,9 +104,9 @@ function GMT_Put_Data(API::Ptr{None}, object_ID::Cint, mode::Uint32, data::Ptr{N
 end
 
 function GMT_Write_Data(API::Ptr{None}, family::Integer, method::Integer, geometry::Integer, mode::Integer,
-	wesn::Ptr{Cdouble}, output::String, data)
+	wesn, output::String, data)
 
-	ccall( (:GMT_Write_Data, thelib), Cint, (Ptr{None}, Uint32, Uint32, Uint32, Uint32, Ptr{Cdouble},
+	err = ccall((:GMT_Write_Data, thelib), Cint, (Ptr{None}, Uint32, Uint32, Uint32, Uint32, Ptr{Cdouble},
 		Ptr{Uint8}, Ptr{None}), API, family, method, geometry, mode, wesn, output, data)
 end
 
@@ -114,9 +116,15 @@ end
 function GMT_Put_Record(API::Ptr{None}, mode::Uint32, record::Ptr{None})
   ccall( (:GMT_Put_Record, thelib), Cint, (Ptr{None}, Uint32, Ptr{None}), API, mode, record)
 end
-function GMT_Encode_ID(API::Ptr{None}, string::Ptr{Uint8}, object_ID::Cint)
-  ccall( (:GMT_Encode_ID, thelib), Cint, (Ptr{None}, Ptr{Uint8}, Cint), API, string, object_ID)
+
+function GMT_Encode_ID(API::Ptr{None}, fname::String, object_ID::Integer)
+	if (length(fname) < 16)
+		println("GMT_Encode_ID: Error in second argument. It must be al least 16 chars long")
+		return 1
+	end
+	err = ccall((:GMT_Encode_ID, thelib), Cint, (Ptr{None}, Ptr{Uint8}, Cint), API, fname, object_ID)
 end
+
 function GMT_Get_Row(API::Ptr{None}, rec_no::Cint, G::Ptr{GMT_GRID}, row::Ptr{Cfloat})
   ccall( (:GMT_Get_Row, thelib), Cint, (Ptr{None}, Cint, Ptr{GMT_GRID}, Ptr{Cfloat}), API, rec_no, G, row)
 end
@@ -152,7 +160,7 @@ function GMT_Get_Value(API::Ptr{None}, arg::String, par::Ptr{Cdouble})
   ccall( (:GMT_Get_Value, thelib), Cint, (Ptr{None}, Ptr{Uint8}, Ptr{Cdouble}), API, arg, par)
 end
 
-function GMT_Call_Module(API::Ptr{None}, _module=C_NULL, mode=0, args=C_NULL)
+function GMT_Call_Module(API::Ptr{None}, _module=C_NULL, mode::Integer=0, args=C_NULL)
 	ccall( (:GMT_Call_Module, thelib), Cint, (Ptr{None}, Ptr{Uint8}, Cint, Ptr{None}), API, _module, mode, args)
 end
 
@@ -226,3 +234,6 @@ function GMT_F77_writegrd_(array::Ptr{Cfloat}, dim::Ptr{Uint32}, wesn::Ptr{Cdoub
   ccall( (:GMT_F77_writegrd_, thelib), Cint, (Ptr{Cfloat}, Ptr{Uint32}, Ptr{Cdouble}, Ptr{Cdouble}, Ptr{Uint8}, Ptr{Uint8}, Ptr{Uint8}), array, dim, wesn, inc, title, remark, file)
 end
 
+function GMT_Report(API, vlevel::Integer, txt::String)
+	ccall((:GMT_Report, thelib), Void, (Ptr{None}, Cint, Ptr{Uint8}), API, vlevel, fname)
+end
