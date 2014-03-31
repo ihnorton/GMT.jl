@@ -30,12 +30,20 @@ export
 	GMT_IS_DUPLICATE_VIA_MATRIX, GMT_IS_REFERENCE_VIA_MATRIX,
 	GMT_MODULE_EXIST, GMT_MODULE_PURPOSE, GMT_MODULE_OPT, GMT_MODULE_CMD,
 	GMT_GRID_DATA_ONLY, GMT_GRID_HEADER_ONLY, GMT_GRID_ALL,
-	GMT_GRID_ALL, GMT_WRITE_SET, GMT_Report,
+	GMT_GRID_ALL, GMT_WRITE_SET, GMT_Report, GMTJL_Register_IO,
+	GMT_grd_container,
+	# From gmtjl_parser
+	GMTJL_find_module, GMTJL_pre_process, GMTJL_post_process,
+	# From gmt_modules
+	gmt_modules,
 
-	grdread, grdwrite, grid_init, matrix_init
+	grdread, grdwrite, grdimage, GMTJL_grid_init, GMTJL_matrix_init
 
 include("libgmt_h.jl")
 include("libgmt.jl")
+include("gmtjl_parser.jl")
+include("gmt_modules.jl")
+
 
 # Encarnation of the old Matlab grdread that reads a grid
 function grdread(API::Ptr{None}, fname::String)
@@ -45,7 +53,7 @@ function grdread(API::Ptr{None}, fname::String)
 	hdr = unsafe_load(Gb.header)
 	header = [hdr.wesn.d1,hdr.wesn.d2,hdr.wesn.d3,hdr.wesn.d4,hdr.z_min,hdr.z_max,hdr.registration,hdr.inc.d1,hdr.inc.d2]
 
-	grd=pointer_to_array(Gb.data, convert(Int64,hdr.nx*hdr.ny))		# It converts Uint32*Uint32 = Uint64 ????
+	grd = pointer_to_array(Gb.data, convert(Int64,hdr.nx*hdr.ny))		# It converts Uint32*Uint32 = Uint64 ????
 	grd = reshape(grd,(int64(hdr.ny),int64(hdr.nx)));
 	return grd,header
 end
@@ -81,7 +89,8 @@ function grdimage (API, wesn=C_NULL, img=C_NULL)
 		#return (API->error);
 	end
 
-	s = str * " -R-10/0/35/45 -JM14c -Ba2 -P > lixo.ps"
+	s = str * " -R-10/0/35/45 -JM14c -Ba2 -P -Vd > lixo.ps"
+	println(s)
 	if (GMT_Call_Module (API, "grdimage", GMT_MODULE_CMD, s) != GMT_OK)		# Plot the image
 		#Return (API->error);
 	end

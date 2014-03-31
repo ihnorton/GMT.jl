@@ -5,12 +5,12 @@
 const thelib = "gmt_w64"
 
 
-function GMT_Create_Session(tag::String="Unknown", pad=2, mode=0, print_func::Ptr{Void}=C_NULL)
+function GMT_Create_Session(tag::String="GMT5", pad=2, mode=0, print_func::Ptr{Void}=C_NULL)
 	ccall( (:GMT_Create_Session, thelib), Ptr{None}, (Ptr{Uint8}, Uint32, Uint32, Ptr{Void}), tag, pad, mode, print_func)
 end
 
-function GMT_Create_Data(API::Ptr{None}, family, geometry, mode, dim=C_NULL,
-		wesn=C_NULL, inc=C_NULL, registration=0, pad=2, data::Ptr{None}=C_NULL)
+function GMT_Create_Data(API::Ptr{None}, family, geometry, mode, dim=C_NULL, wesn=C_NULL,
+		inc=C_NULL, registration=0, pad=2, data::Ptr{None}=C_NULL)
 
 	if (family == GMT_IS_DATASET)
 		ret_type = Ptr{GMT_DATASET}
@@ -30,7 +30,7 @@ function GMT_Create_Data(API::Ptr{None}, family, geometry, mode, dim=C_NULL,
 		ret_type = Ptr{None}			# Should be error instead
 	end
 
-	ptr = ccall( (:GMT_Create_Data, thelib), Ptr{None}, (Ptr{None}, Uint32, Uint32, Uint32, Ptr{Uint64},
+	ptr = ccall((:GMT_Create_Data, thelib), Ptr{None}, (Ptr{None}, Uint32, Uint32, Uint32, Ptr{Uint64},
 		Ptr{Cdouble}, Ptr{Cdouble}, Uint32, Cint, Ptr{None}), API, family, geometry, mode, dim, wesn, inc,
 		registration, pad, data)
 
@@ -67,9 +67,10 @@ function GMT_Read_Data(API::Ptr{None}, family, method, geometry, mode, wesn, inp
 	convert(ret_type, ptr)
 end
 
-function GMT_Retrieve_Data(API::Ptr{None}, object_ID::Cint)
-  ccall( (:GMT_Retrieve_Data, thelib), Ptr{None}, (Ptr{None}, Cint), API, object_ID)
+function GMT_Retrieve_Data(API::Ptr{None}, object_ID::Int)
+	ccall((:GMT_Retrieve_Data, thelib), Ptr{None}, (Ptr{None}, Cint), API, object_ID)
 end
+
 function GMT_Duplicate_Data(API::Ptr{None}, family::Uint32, mode::Uint32, data::Ptr{None})
   ccall( (:GMT_Duplicate_Data, thelib), Ptr{None}, (Ptr{None}, Uint32, Uint32, Ptr{None}), API, family, mode, data)
 end
@@ -118,10 +119,6 @@ function GMT_Put_Record(API::Ptr{None}, mode::Uint32, record::Ptr{None})
 end
 
 function GMT_Encode_ID(API::Ptr{None}, fname::String, object_ID::Integer)
-	if (length(fname) < 16)
-		println("GMT_Encode_ID: Error in second argument. It must be al least 16 chars long")
-		return 1
-	end
 	err = ccall((:GMT_Encode_ID, thelib), Cint, (Ptr{None}, Ptr{Uint8}, Cint), API, fname, object_ID)
 end
 
@@ -134,9 +131,11 @@ end
 function GMT_Set_Comment(API::Ptr{None}, family::Uint32, mode::Uint32, arg::Ptr{None}, data::Ptr{None})
   ccall( (:GMT_Set_Comment, thelib), Cint, (Ptr{None}, Uint32, Uint32, Ptr{None}, Ptr{None}), API, family, mode, arg, data)
 end
-function GMT_Get_ID(API::Ptr{None}, family::Uint32, direction::Uint32, resource::Ptr{None})
-  ccall( (:GMT_Get_ID, thelib), Cint, (Ptr{None}, Uint32, Uint32, Ptr{None}), API, family, direction, resource)
+
+function GMT_Get_ID(API::Ptr{None}, family::Int, dir::Int, resource=C_NULL)
+	ccall((:GMT_Get_ID, thelib), Cint, (Ptr{None}, Uint32, Uint32, Ptr{None}), API, family, dir, resource)
 end
+
 function GMT_Get_Index(API::Ptr{None}, header::Ptr{GMT_GRID_HEADER}, row::Cint, col::Cint)
   ccall( (:GMT_Get_Index, thelib), int64_t, (Ptr{None}, Ptr{GMT_GRID_HEADER}, Cint, Cint), API, header, row, col)
 end
@@ -160,19 +159,24 @@ function GMT_Get_Value(API::Ptr{None}, arg::String, par::Ptr{Cdouble})
   ccall( (:GMT_Get_Value, thelib), Cint, (Ptr{None}, Ptr{Uint8}, Ptr{Cdouble}), API, arg, par)
 end
 
-function GMT_Call_Module(API::Ptr{None}, _module=C_NULL, mode::Integer=0, args=C_NULL)
-	ccall( (:GMT_Call_Module, thelib), Cint, (Ptr{None}, Ptr{Uint8}, Cint, Ptr{None}), API, _module, mode, args)
+function GMT_Call_Module(API::Ptr{None}, _module=C_NULL, mode::Int=0, args=C_NULL)
+	if (isa(args,ASCIIString))	args = pointer(args)	end
+	ccall((:GMT_Call_Module, thelib), Cint, (Ptr{None}, Ptr{Uint8}, Cint, Ptr{None}), API, _module, mode, args)
 end
 
-function GMT_Create_Options(API::Ptr{None}, argc::Cint, in::Ptr{None})
-  ccall( (:GMT_Create_Options, thelib), Ptr{GMT_OPTION}, (Ptr{None}, Cint, Ptr{None}), API, argc, in)
+function GMT_Create_Options(API::Ptr{None}, argc::Int, args)
+	# VERSATILIZAR PARA O CASO DE ARGS SER STRING OU ARRAY DE STRINGS
+	ccall((:GMT_Create_Options, thelib), Ptr{GMT_OPTION}, (Ptr{None}, Cint, Ptr{None}), API, argc, args)
 end
+
 function GMT_Make_Option(API::Ptr{None}, option::Uint8, arg::Ptr{Uint8})
   ccall( (:GMT_Make_Option, thelib), Ptr{GMT_OPTION}, (Ptr{None}, Uint8, Ptr{Uint8}), API, option, arg)
 end
+
 function GMT_Find_Option(API::Ptr{None}, option::Uint8, head::Ptr{GMT_OPTION})
-  ccall( (:GMT_Find_Option, thelib), Ptr{GMT_OPTION}, (Ptr{None}, Uint8, Ptr{GMT_OPTION}), API, option, head)
+	ccall((:GMT_Find_Option, thelib), Ptr{GMT_OPTION}, (Ptr{None}, Uint8, Ptr{GMT_OPTION}), API, option, head)
 end
+
 function GMT_Append_Option(API::Ptr{None}, current::Ptr{GMT_OPTION}, head::Ptr{GMT_OPTION})
   ccall( (:GMT_Append_Option, thelib), Ptr{GMT_OPTION}, (Ptr{None}, Ptr{GMT_OPTION}, Ptr{GMT_OPTION}), API, current, head)
 end
@@ -224,16 +228,7 @@ end
 function GMT_FFT_2D(API::Ptr{None}, data::Ptr{Cfloat}, nx::Uint32, ny::Uint32, direction::Cint, mode::Uint32)
   ccall( (:GMT_FFT_2D, thelib), Cint, (Ptr{None}, Ptr{Cfloat}, Uint32, Uint32, Cint, Uint32), API, data, nx, ny, direction, mode)
 end
-function GMT_F77_readgrdinfo_(dim::Ptr{Uint32}, wesn::Ptr{Cdouble}, inc::Ptr{Cdouble}, title::Ptr{Uint8}, remark::Ptr{Uint8}, file::Ptr{Uint8})
-  ccall( (:GMT_F77_readgrdinfo_, thelib), Cint, (Ptr{Uint32}, Ptr{Cdouble}, Ptr{Cdouble}, Ptr{Uint8}, Ptr{Uint8}, Ptr{Uint8}), dim, wesn, inc, title, remark, file)
-end
-function GMT_F77_readgrd_(array::Ptr{Cfloat}, dim::Ptr{Uint32}, wesn::Ptr{Cdouble}, inc::Ptr{Cdouble}, title::Ptr{Uint8}, remark::Ptr{Uint8}, file::Ptr{Uint8})
-  ccall( (:GMT_F77_readgrd_, thelib), Cint, (Ptr{Cfloat}, Ptr{Uint32}, Ptr{Cdouble}, Ptr{Cdouble}, Ptr{Uint8}, Ptr{Uint8}, Ptr{Uint8}), array, dim, wesn, inc, title, remark, file)
-end
-function GMT_F77_writegrd_(array::Ptr{Cfloat}, dim::Ptr{Uint32}, wesn::Ptr{Cdouble}, inc::Ptr{Cdouble}, title::Ptr{Uint8}, remark::Ptr{Uint8}, file::Ptr{Uint8})
-  ccall( (:GMT_F77_writegrd_, thelib), Cint, (Ptr{Cfloat}, Ptr{Uint32}, Ptr{Cdouble}, Ptr{Cdouble}, Ptr{Uint8}, Ptr{Uint8}, Ptr{Uint8}), array, dim, wesn, inc, title, remark, file)
-end
 
-function GMT_Report(API, vlevel::Integer, txt::String)
-	ccall((:GMT_Report, thelib), Void, (Ptr{None}, Cint, Ptr{Uint8}), API, vlevel, fname)
+function GMT_Report(API, vlevel::Int, txt::String)
+	ccall((:GMT_Report, thelib), Void, (Ptr{None}, Cint, Ptr{Uint8}), API, vlevel, txt)
 end
