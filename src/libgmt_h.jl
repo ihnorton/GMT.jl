@@ -1607,7 +1607,7 @@ struct GMT_SESSION {
 	max_meminc::Csize_t
 	f_NaN::Float32				# Holds the IEEE NaN for floats */
 	d_NaN::Float64				# Holds the IEEE NaN for doubles */
-	double no_rgb[4];		/* To hold {-1, -1, -1, 0} when needed */
+	no_rgb::Array_4_Cdouble		# To hold {-1, -1, -1, 0} when needed */
 	double u2u[4][4];		/* u2u is the 4x4 conversion matrix for cm, inch, m, pt */
 	char unit_name[4][8];		/* Full name of the 4 units cm, inch, m, pt */
 	struct GMT_HASH rgb_hashnode[GMT_N_COLOR_NAMES];/* Used to translate colornames to r/g/b */

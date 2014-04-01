@@ -37,12 +37,13 @@ export
 	# From gmt_modules
 	gmt_modules,
 
-	grdread, grdwrite, grdimage, GMTJL_grid_init, GMTJL_matrix_init
+	gmt, grdread, grdwrite, grdimage, GMTJL_grid_init, GMTJL_matrix_init
 
 include("libgmt_h.jl")
 include("libgmt.jl")
 include("gmtjl_parser.jl")
 include("gmt_modules.jl")
+include("gmt_main.jl")
 
 
 # Encarnation of the old Matlab grdread that reads a grid
