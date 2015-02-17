@@ -147,6 +147,12 @@ const GMT_READ_TEXT = 1
 const GMT_READ_MIXED = 2
 const GMT_FILE_BREAK = 4
 # end enum GMT_enum_read
+
+const GMT_ALLOC_EXTERNALLY = 0    # Allocated outside of GMT: We cannot reallocate or free this memory
+const GMT_ALLOC_INTERNALLY = 1    # Allocated by GMT: We may reallocate as needed and free when no longer needed
+const GMT_ALLOC_NORMAL = 0        # Normal allocation of new dataset based on shape of input dataset
+const GMT_ALLOC_VERTICAL = 4      # Allocate a single table for data set to hold all input tables by vertical concatenation */
+const GMT_ALLOC_HORIZONTAL = 8
 # begin enum GMT_enum_write
 typealias GMT_enum_write Uint32
 const GMT_WRITE_DOUBLE = 0
@@ -1286,7 +1292,7 @@ type GMT_GRID
     id::Uint32
     alloc_level::Uint32
     alloc_mode::GMT_enum_alloc
-    extra::Ptr{None}
+    extra::Ptr{Void}
 end
 # begin enum GMT_enum_geometry
 typealias GMT_enum_geometry Uint32
@@ -1571,20 +1577,21 @@ type GMT_MATRIX
 	n_rows::Uint64
 	n_columns::Uint64
 	n_layers::Uint64
-	shape::GMT_enum_fmt
-	registration::GMT_enum_reg
+	shape::Uint32
+	registration::Uint32
 	dim::Csize_t
 	size::Csize_t
-	_type::GMT_enum_type
+	_type::Uint32
 	range::Array_6_Cdouble
 #	data::GMT_UNIVECTOR
-	data::Union(Ptr{Uint8},Ptr{Int8},Ptr{Uint16},Ptr{Int16},Ptr{Uint32},Ptr{Int32},
-		Ptr{Uint64},Ptr{Int64},Ptr{Float32},Ptr{Float64})
+#	data::Union(Ptr{Uint8},Ptr{Int8},Ptr{Uint16},Ptr{Int16},Ptr{Uint32},Ptr{Int32},
+#		Ptr{Uint64},Ptr{Int64},Ptr{Float32},Ptr{Float64})
+    data::Ptr{Void}
 	command::Array_320_Uint8
 	remark::Array_160_Uint8
 	id::Uint64
 	alloc_level::Uint32
-	alloc_mode::GMT_enum_alloc
+	alloc_mode::Uint32
 end
 
 #=

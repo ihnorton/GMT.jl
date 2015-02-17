@@ -26,39 +26,54 @@ function gmt(cmd::String, args...)
 	# 2. Get mex arguments, if any, and extract the GMT module name
 	# First argument is the command string, e.g., 'blockmean -R0/5/0/5 -I1' or just 'destroy|free'
 	g_module,r = strtok(cmd)
+	r = replace(r, "> ", ">")	# TODO. Make this robust to more spaces
+	r = replace(r, ">", "->")
+	r = replace(r, "-->", "->")		# When the above replaced "->" by "-->"
+
 	options = cell(10)			# 10 should be enough for the max number of options
 	i = 0
 	while (~isempty(r))
 		i = i + 1
 		options[i],r = strtok(r)
+		r = replace(r, ">", "->")
+		r = replace(r, "-->", "->")		# When the above replaced "->" by "-->"
 	end
 	options = options[1:i]		# Remove extra allocated cells
 
 	# 3. Determine the GMT module ID, or list module usages and return if module is not found
-	if ((module_id = GMTJL_find_module(API, g_module)) == -1)
+	module_id, use_prefix = GMTJL_find_module(API, g_module)
+	if (module_id == -1)
 		println("Error: ", g_module, " is not a GMT module")
 		#GMT_Call_Module(API, C_NULL, GMT_MODULE_PURPOSE, C_NULL)
 		return
 	end
 
-	# 5. Parse the mex command, update GMT option lists, and register in/out resources, and return X array
-	n_items, info = GMTJL_pre_process(API, g_module, module_id, options, args...)
+	if (use_prefix != 0)
+		module_name = @sprintf("gmt%s", g_module)
+	else
+		module_name = g_module
+	end
+
+	# 5. Parse the command, update GMT option lists, and register in/out resources, and return X array
+	n_items, info = GMTJL_pre_process(API, module_name, module_id, options, args...)
 	if (n_items < 0)
 		error ("Failure to parse the JL command options")
 	end
 
 	# 6. Run GMT module; give usage message if errors arise during parsing
+	println("options = ", options)
 	options = join(options, " ")
 	options = replace(options, "<", "-<")
 	options = replace(options, ">", "->")
-
-	status = GMT_Call_Module(API, g_module, GMT_MODULE_CMD, options)
+	options = replace(options, "-->", "->")		# When the above replaced "->" by "-->"
+#	println("options = ", options)
+	status = GMT_Call_Module(API, module_name, GMT_MODULE_CMD, options)
 	println("merda ", status)
 
 	# 7. Hook up module output to Matlab plhs arguments
-	#OUT = GMTJL_post_process (API, info, n_items)
+	OUT = GMTJL_post_process (API, info, n_items)
 
-	return info, API
+	return OUT, API
 end
 
 

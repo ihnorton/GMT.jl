@@ -10,12 +10,12 @@ export
 	GMT_Read_Data,
 	GMT_Register_IO,
 	GMT_Get_Data,
-	GMT_Read_Data,
 	GMT_Retrieve_Data,
-	GMT_Retrieve_Data,
+	GMT_Insert_Data,
 	GMT_Message,
 	GMT_Call_Module,
 	GMT_Write_Data,
+	GMT_Get_Moduleinfo,
 	GMT_IS_DATASET, GMT_IS_TEXTSET, GMT_IS_GRID, GMT_IS_LINE,
 	GMT_IS_CPT, GMT_IS_IMAGE, GMT_IS_VECTOR, GMT_IS_MATRIX,
 	GMT_IS_COORD, GMT_IS_POINT,	GMT_IS_MATRIX, GMT_IS_SURFACE,
@@ -32,6 +32,7 @@ export
 	GMT_GRID_DATA_ONLY, GMT_GRID_HEADER_ONLY, GMT_GRID_ALL,
 	GMT_GRID_ALL, GMT_WRITE_SET, GMT_Report, GMTJL_Register_IO,
 	GMT_grd_container,
+	gmt_core_module_info,
 	# From gmtjl_parser
 	GMTJL_find_module, GMTJL_pre_process, GMTJL_post_process,
 	# From gmt_modules
